@@ -1,4 +1,6 @@
 import { Client, GatewayIntentBits } from "discord.js";
+import ready from "./listeners/ready";
+import messageCreator from "./listeners/messageCreate";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -16,5 +18,8 @@ const client = new Client({
     GatewayIntentBits.GuildVoiceStates,
   ],
 });
+
+ready(client);
+messageCreator(client);
 
 client.login(token);
