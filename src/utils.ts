@@ -51,11 +51,13 @@ export async function playMusicFunction(
   song: Song
 ): Promise<boolean> {
   try {
-    const voiceConnection: VoiceConnection | undefined =
-      await getVoiceConnection(interaction.guildId!);
+    let voiceConnection: VoiceConnection | undefined = await getVoiceConnection(
+      interaction.guildId!
+    );
     if (!voiceConnection) {
       // IF: ボイスチャンネルに接続していない場合は、接続する
       await joinTargetVoiceChannel(interaction);
+      voiceConnection = await getVoiceConnection(interaction.guildId!);
     }
 
     // 音楽を再生する
