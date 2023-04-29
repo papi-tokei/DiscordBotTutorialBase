@@ -59,13 +59,13 @@ export async function playMusicFunction(
     }
 
     // 音楽を再生する
-    const player = createAudioPlayer()
-    player.play(
-      createAudioResource(ytdl(song.url, { filter: "audioonly" }))
-    );
+    const player = createAudioPlayer();
+    player.play(createAudioResource(ytdl(song.url, { filter: "audioonly" })));
     voiceConnection?.subscribe(player);
 
-    await interaction.editReply(`楽曲タイトル: ${song.title}\n再生時間：${formatTime(song.lengthSeconds)}`);
+    await interaction.editReply(
+      `楽曲タイトル: ${song.title}\n再生時間：${formatTime(song.lengthSeconds)}`
+    );
     return false;
   } catch (err) {
     console.error(err);
