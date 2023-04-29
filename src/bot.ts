@@ -1,7 +1,8 @@
 import { Client, GatewayIntentBits } from "discord.js";
+import dotenv from "dotenv";
 import ready from "./listeners/ready";
 import messageCreator from "./listeners/messageCreate";
-import dotenv from "dotenv";
+import interactionCreate from "./listeners/interactionCreate";
 
 dotenv.config();
 
@@ -21,5 +22,6 @@ const client = new Client({
 
 ready(client);
 messageCreator(client);
+interactionCreate(client);
 
 client.login(token);
